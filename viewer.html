@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio Visit Viewer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="viewer.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <div>
+          <p class="tag">Portfolio Tracker</p>
+          <h1>Visit Logs</h1>
+          <p class="lead">
+            Recent visitors, device details, and approximate locations.
+          </p>
+        </div>
+        <div class="controls">
+          <label for="limit">Entries</label>
+          <select id="limit">
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="200" selected>200</option>
+            <option value="500">500</option>
+          </select>
+          <button id="refresh">Refresh</button>
+        </div>
+      </header>
+
+      <section class="status" id="status">Loading...</section>
+
+      <section class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Name</th>
+              <th>Location</th>
+              <th>Device</th>
+              <th>Page</th>
+            </tr>
+          </thead>
+          <tbody id="log-body"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="viewer.js"></script>
+  </body>
+</html>

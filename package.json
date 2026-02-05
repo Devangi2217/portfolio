@@ -1,0 +1,14 @@
+{
+  "name": "devangi-portfolio-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple visit logger for portfolio",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

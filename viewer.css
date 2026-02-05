@@ -1,0 +1,122 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Sora", sans-serif;
+  background: radial-gradient(circle at 20% 20%, #3d1b64, #0b0d25 50%),
+    linear-gradient(135deg, #11154b 0%, #2a124d 50%, #3b1f6c 100%);
+  color: #f4f1ff;
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.tag {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: #b584ff;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  margin-bottom: 8px;
+}
+
+.lead {
+  color: #c7b9ef;
+  max-width: 520px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.controls label {
+  font-size: 0.9rem;
+  color: #c7b9ef;
+}
+
+.controls select,
+.controls button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(15, 10, 40, 0.6);
+  color: #f4f1ff;
+  font-family: inherit;
+}
+
+.controls button {
+  cursor: pointer;
+}
+
+.status {
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(12, 8, 40, 0.6);
+  margin-bottom: 20px;
+  color: #c7b9ef;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  background: rgba(12, 8, 40, 0.6);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.92rem;
+}
+
+th {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: #b584ff;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: rgba(123, 76, 255, 0.08);
+}
+
+.muted {
+  color: #c7b9ef;
+}
