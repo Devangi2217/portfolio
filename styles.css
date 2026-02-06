@@ -171,6 +171,24 @@ p {
   gap: 14px;
 }
 
+.hero-contact {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.hero-contact a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.hero-contact a:hover {
+  color: var(--text);
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -298,6 +316,12 @@ p {
   flex-wrap: wrap;
 }
 
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .project-tag {
   font-size: 0.9rem;
   color: var(--muted);
@@ -327,6 +351,68 @@ p {
   font-size: 0.85rem;
   color: var(--text);
   background: rgba(20, 12, 54, 0.7);
+}
+
+.certs-grid {
+  display: grid;
+  gap: 22px;
+}
+
+.cert-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 16px;
+}
+
+.cert-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cert-meta {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.cert-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--border);
+  background: rgba(123, 76, 255, 0.2);
+  color: var(--text);
+}
+
+.cert-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.cert-details h4 {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.cert-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cert-note {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 .skills-grid {
@@ -506,6 +592,12 @@ p {
   border-radius: 16px;
   padding: 22px;
   border: 1px solid var(--border);
+}
+
+.benchmark-actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
 }
 
 .benchmark-grid h3 {
