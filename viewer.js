@@ -11,9 +11,23 @@ const formatLocation = (geo) => {
   return [geo.city, geo.region, geo.country].filter(Boolean).join(", ");
 };
 
+const detectDeviceType = (entry) => {
+  const ua = (entry.userAgent || "").toLowerCase();
+  const platform = (entry.platform || "").toLowerCase();
+
+  if (ua.includes("android")) return "Android";
+  if (ua.includes("iphone") || ua.includes("ipad") || ua.includes("ios")) return "iOS";
+  if (ua.includes("mac") || platform.includes("mac")) return "Mac";
+  if (ua.includes("windows") || platform.includes("win")) return "Windows";
+  if (ua.includes("linux") || platform.includes("linux")) return "Linux";
+  if (ua.includes("mobile")) return "Mobile";
+  return "Unknown";
+};
+
 const formatDevice = (entry) => {
+  const deviceType = detectDeviceType(entry);
   const parts = [entry.platform, entry.language].filter(Boolean);
-  return `${entry.userAgent || "Unknown"}${parts.length ? ` (${parts.join(", ")})` : ""}`;
+  return `${deviceType}${parts.length ? ` (${parts.join(", ")})` : ""}`;
 };
 
 const renderRows = (entries) => {
