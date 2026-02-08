@@ -23,7 +23,9 @@ const renderRows = (entries) => {
   }
   tbody.innerHTML = entries
     .map((entry) => {
-      const time = entry.time ? new Date(entry.time).toLocaleString() : "Unknown";
+      const parsed = entry.time ? new Date(entry.time) : null;
+      const time =
+        parsed && !Number.isNaN(parsed.getTime()) ? parsed.toLocaleString() : "-";
       const name = entry.name || "-";
       const location = formatLocation(entry.geo);
       const device = formatDevice(entry);
