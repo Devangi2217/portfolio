@@ -1,6 +1,6 @@
 const sections = document.querySelectorAll("section");
-const TRACK_URL = "https://portfolio-ph0w.onrender.com/track";
-const HEALTH_URL = "https://portfolio-ph0w.onrender.com/health";
+// Paste your Google Apps Script Web App URL here.
+const TRACK_URL = "https://script.google.com/macros/s/AKfycbwlBemhvuvcVjOHGIS8-DBSX39M4gcZ_AIP1-tlsBbGdG7M3aKqK4VJibf_6o6LOFf2yQ/exec";
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -28,15 +28,15 @@ const sendVisit = async (extra = {}) => {
   try {
     await fetch(TRACK_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      mode: "no-cors",
       body: JSON.stringify({ ...basePayload(), ...extra }),
     });
+    setStatus("online", "Tracker enabled");
   } catch (error) {
     // Fail silently if the tracker is offline.
+    setStatus("offline", "Tracker offline");
   }
 };
-
-sendVisit();
 
 const statusBadge = document.querySelector("#tracker-status");
 const setStatus = (state, label) => {
@@ -48,20 +48,8 @@ const setStatus = (state, label) => {
   statusBadge.style.display = isAdmin ? "inline-flex" : "none";
 };
 
-const checkTracker = async () => {
-  try {
-    const response = await fetch(HEALTH_URL, { method: "GET" });
-    if (response.ok) {
-      setStatus("online", "Tracker online");
-      return;
-    }
-  } catch (error) {
-    // ignore
-  }
-  setStatus("offline", "Tracker offline");
-};
-
-checkTracker();
+setStatus("offline", "Tracker offline");
+sendVisit();
 
 const visitorForm = document.querySelector("#visitor-form");
 if (visitorForm) {
