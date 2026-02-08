@@ -1,4 +1,5 @@
-const LOG_URL = "/logs";
+const LOG_URL =
+  "https://script.google.com/macros/s/AKfycbwlBemhvuvcVjOHGIS8-DBSX39M4gcZ_AIP1-tlsBbGdG7M3aKqK4VJibf_6o6LOFf2yQ/exec";
 
 const statusEl = document.querySelector("#status");
 const tbody = document.querySelector("#log-body");
@@ -23,10 +24,10 @@ const renderRows = (entries) => {
   tbody.innerHTML = entries
     .map((entry) => {
       const time = entry.time ? new Date(entry.time).toLocaleString() : "Unknown";
-      const name = entry.name || "—";
+      const name = entry.name || "-";
       const location = formatLocation(entry.geo);
       const device = formatDevice(entry);
-      const page = entry.page || "—";
+      const page = entry.page || "-";
       return `
         <tr>
           <td>${time}</td>
@@ -43,18 +44,44 @@ const renderRows = (entries) => {
 const loadLogs = async () => {
   const limit = limitSelect.value;
   statusEl.textContent = "Loading...";
-  try {
-    const response = await fetch(`${LOG_URL}?limit=${limit}`);
-    const data = await response.json();
-    if (!data.ok) {
-      throw new Error("Bad response");
-    }
-    renderRows(data.entries);
-    statusEl.textContent = `Showing ${data.entries.length} entries.`;
-  } catch (error) {
-    statusEl.textContent = "Failed to load logs. Make sure the tracker server is running.";
+  const callbackName = `handleLogs_${Date.now()}`;
+  const script = document.createElement("script");
+  let timeoutId;
+
+  const cleanup = () => {
+    if (timeoutId) clearTimeout(timeoutId);
+    delete window[callbackName];
+    script.remove();
+  };
+
+  const fail = () => {
+    statusEl.textContent =
+      "Failed to load logs. Make sure the Apps Script is deployed.";
     renderRows([]);
-  }
+  };
+
+  window[callbackName] = (data) => {
+    cleanup();
+    if (!data || !data.ok) {
+      fail();
+      return;
+    }
+    renderRows(data.entries || []);
+    statusEl.textContent = `Showing ${data.entries.length} entries.`;
+  };
+
+  script.onerror = () => {
+    cleanup();
+    fail();
+  };
+
+  timeoutId = setTimeout(() => {
+    cleanup();
+    fail();
+  }, 8000);
+
+  script.src = `${LOG_URL}?limit=${encodeURIComponent(limit)}&callback=${callbackName}`;
+  document.body.appendChild(script);
 };
 
 refreshBtn.addEventListener("click", loadLogs);
