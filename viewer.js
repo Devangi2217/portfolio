@@ -1,5 +1,5 @@
 const LOG_URL =
-  "https://script.google.com/macros/s/AKfycbwlBemhvuvcVjOHGIS8-DBSX39M4gcZ_AIP1-tlsBbGdG7M3aKqK4VJibf_6o6LOFf2yQ/exec";
+  "https://script.google.com/macros/s/AKfycbzi8SEecLP6C7C44JMjMlnAUavkaETJxr7g1xbE_uWidpUUOh3WObfBHtWLlUxp0euF/exec";
 
 const statusEl = document.querySelector("#status");
 const tbody = document.querySelector("#log-body");

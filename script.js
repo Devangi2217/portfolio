@@ -1,6 +1,6 @@
 const sections = document.querySelectorAll("section");
 // Paste your Google Apps Script Web App URL here.
-const TRACK_URL = "https://script.google.com/macros/s/AKfycbwlBemhvuvcVjOHGIS8-DBSX39M4gcZ_AIP1-tlsBbGdG7M3aKqK4VJibf_6o6LOFf2yQ/exec";
+const TRACK_URL = "https://script.google.com/macros/s/AKfycbzi8SEecLP6C7C44JMjMlnAUavkaETJxr7g1xbE_uWidpUUOh3WObfBHtWLlUxp0euF/exec";
 
 const observer = new IntersectionObserver(
   (entries) => {
