@@ -71,3 +71,79 @@ if (adminButton) {
     adminButton.style.display = "inline-flex";
   }
 }
+
+const canvas = document.querySelector("#bg-canvas");
+if (canvas instanceof HTMLCanvasElement) {
+  const ctx = canvas.getContext("2d");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const state = {
+    width: 0,
+    height: 0,
+    particles: [],
+    mouse: { x: 0, y: 0 },
+  };
+
+  const resize = () => {
+    state.width = window.innerWidth;
+    state.height = window.innerHeight;
+    canvas.width = state.width;
+    canvas.height = state.height;
+    const count = Math.floor(Math.min(120, Math.max(50, state.width / 12)));
+    state.particles = Array.from({ length: count }, () => ({
+      x: Math.random() * state.width,
+      y: Math.random() * state.height,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: Math.random() * 2 + 0.6,
+    }));
+  };
+
+  const draw = () => {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, state.width, state.height);
+    ctx.fillStyle = "rgba(120, 200, 255, 0.9)";
+    ctx.strokeStyle = "rgba(120, 200, 255, 0.15)";
+
+    for (const p of state.particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > state.width) p.vx *= -1;
+      if (p.y < 0 || p.y > state.height) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    for (let i = 0; i < state.particles.length; i++) {
+      for (let j = i + 1; j < state.particles.length; j++) {
+        const a = state.particles[i];
+        const b = state.particles[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < 120) {
+          ctx.globalAlpha = 1 - dist / 120;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+    ctx.globalAlpha = 1;
+
+    if (!prefersReducedMotion) {
+      requestAnimationFrame(draw);
+    }
+  };
+
+  resize();
+  window.addEventListener("resize", resize);
+  if (!prefersReducedMotion) {
+    requestAnimationFrame(draw);
+  } else {
+    draw();
+  }
+}
