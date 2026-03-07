@@ -200,6 +200,35 @@ p {
   color: var(--text);
 }
 
+.about-me {
+  display: grid;
+  gap: 18px;
+}
+
+.about-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.about-card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.about-card ul {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.about-card li {
+  list-style: disc;
+  margin-left: 20px;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -586,6 +615,19 @@ p {
   padding: 20px;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.blog-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.blog-card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
 }
 
 .benchmarks {
