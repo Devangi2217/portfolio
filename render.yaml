@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: devangi-portfolio
+    env: node
+    plan: free
+    repo: https://github.com/Devangi2217/portfolio
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health

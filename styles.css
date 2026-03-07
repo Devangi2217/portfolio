@@ -218,15 +218,36 @@ p {
   border: 1px solid var(--border);
 }
 
-.about-card ul {
+.about-list {
   display: grid;
-  gap: 8px;
+  gap: 10px;
   margin-top: 12px;
 }
 
-.about-card li {
-  list-style: disc;
-  margin-left: 20px;
+.about-list li {
+  list-style: none;
+  color: var(--muted);
+}
+
+.about-list li a {
+  color: var(--accent);
+}
+
+.about-list li a:hover {
+  color: var(--text);
+}
+
+.blog-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.blog-card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
 }
 
 .btn {
@@ -615,19 +636,6 @@ p {
   padding: 20px;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.blog-grid {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-
-.blog-card {
-  background: var(--card);
-  padding: 20px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
 }
 
 .benchmarks {
